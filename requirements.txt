@@ -1,5 +1,2 @@
 streamlit
 scikit-learn
-numpy
-math
-pandas
