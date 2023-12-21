@@ -14,16 +14,26 @@ def main():
     st.title(":red[Laptop Price Predictor ]")
 
     # Brand
-    company = st.selectbox('Brand', df['Company'].unique())
+    # company = st.selectbox('Brand', df['Company'].unique())
+    defaultCompany = df['Company'].unique()[1]
+    company = st.selectbox('Brand', df['Company'].unique(), index=df['Company'].unique().tolist().index(defaultCompany))
+
+    
 
     # type of laptop
-    type = st.selectbox('Type', df['TypeName'].unique())
+    # type = st.selectbox('Type', df['TypeName'].unique())
+    defaultType = df['TypeName'].unique()[1]
+    type = st.selectbox('Type', df['TypeName'].unique(), index=df['TypeName'].unique().tolist().index(defaultType))
+    
 
     # Ram
-    ram = st.selectbox('RAM (in GB)', [2,4,6,8,12,16,24,32,64])
+    # ram = st.selectbox('RAM (in GB)', [2,4,6,8,12,16,24,32,64])
+    defaultRam = 8
+    availableRam = [2,4,6,8,12,16,24,32,64]
+    ram = st.selectbox('RAM (in GB)', availableRam, index = availableRam.index(defaultRam))
 
     # Weight
-    weight = st.number_input('Weight of Laptop')
+    weight = st.number_input('Weight of Laptop', value=1.4)
 
     # Touchscreen
     touchscreen = st.selectbox('TouchScreen',  ['No', 'Yes'])
@@ -33,7 +43,7 @@ def main():
 
 
     # Screen Size
-    screen_size = st.number_input('Screen Size')
+    screen_size = st.number_input('Screen Size (in inch)', value=14)
 
     # resolution
     resolution = st.selectbox('Screen Resolution', ['1920x1080', '1366x768',    '1600x900', '3840x2160', '3200x1800', '2880x1800', '2560x1600', '2560x1440',   '2304x1440'])
@@ -46,13 +56,19 @@ def main():
     hdd = st.selectbox('HDD (in GB)',  [0, 128, 256, 512, 1024, 2048])
 
     # SSD
-    ssd = st.selectbox('SSD (in GB)',  [0, 128, 256, 512, 1024])
+    # ssd = st.selectbox('SSD (in GB)',  [0, 128, 256, 512, 1024])
+    availableSSD = [0, 128, 256, 512, 1024]
+    defaultSSD = 512
+    ssd = st.selectbox('SSD (in GB)', availableSSD, index = availableSSD.index(defaultSSD))
 
     # GPU
     gpu = st.selectbox('GPU',  df['Gpu brand'].unique())
 
     # OS
-    os = st.selectbox('OS',  df['os'].unique())
+    # os = st.selectbox('OS',  df['os'].unique())
+    # os = st.selectbox('OS',  df['os'].unique())
+    defaultOS = df['os'].unique()[2]
+    os = st.selectbox('OS', df['os'].unique(), index=df['os'].unique().tolist().index(defaultOS))
 
     if st.button('Predict Price'):
 
@@ -75,7 +91,8 @@ def main():
         query = query.reshape(1, 12)
         rslt = math.floor(int(np.exp(pipe.predict(query)[0])))
 
-        st.title("The Predicted Price of Laptop is: "+str(rslt))
+        # st.title("The Predicted Price of Laptop is: "+str(rslt))
+        st.title(f"The Predicted Price of Laptop is: :blue[{rslt}] :red[ \u20B9]")
 
 
 if __name__=='__main__':
