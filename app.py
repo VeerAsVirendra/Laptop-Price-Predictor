@@ -66,7 +66,6 @@ def main():
 
     # OS
     # os = st.selectbox('OS',  df['os'].unique())
-    # os = st.selectbox('OS',  df['os'].unique())
     defaultOS = df['os'].unique()[2]
     os = st.selectbox('OS', df['os'].unique(), index=df['os'].unique().tolist().index(defaultOS))
 
