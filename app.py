@@ -11,7 +11,7 @@ def main():
     pipe = pickle.load(open('pipe.pkl', 'rb'))
     df = pickle.load(open('df.pkl', 'rb'))
 
-    st.title(":red[Laptop Price Predictor Virendra]")
+    st.title(":red[Laptop Price Predictor]")
 
     # Brand
     # company = st.selectbox('Brand', df['Company'].unique())
