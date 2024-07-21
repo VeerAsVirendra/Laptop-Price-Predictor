@@ -1,3 +1,9 @@
+# streamlit
+# scikit-learn==1.2.2
+# pandas<2
 streamlit
+numpy==1.23.5
+scipy==1.10.0
 scikit-learn==1.2.2
 pandas<2
+
